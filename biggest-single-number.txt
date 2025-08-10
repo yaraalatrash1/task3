@@ -1,0 +1,8 @@
+select
+IFNULL (
+    (select n1.num 
+    from MyNumbers n1 
+    group by n1.num
+    having count(n1.num)=1 
+    order by n1.num desc
+    limit 1),null) as num;

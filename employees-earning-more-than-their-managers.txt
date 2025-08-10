@@ -1,0 +1,3 @@
+select e.name as Employee from Employee as e
+where e.salary > (select m.salary from Employee m 
+                    where m.id = e.managerId and e.managerId is not null); 
