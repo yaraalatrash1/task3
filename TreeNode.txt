@@ -1,0 +1,22 @@
+-- solution #1: 
+
+# Write your MySQL query statement below
+select t.id,
+case
+    when t.p_id is null then 'Root'
+    when count(c.p_id)>0 then 'Inner'
+    else 'Leaf'
+END AS type
+from Tree t
+left join Tree c
+on t.id = c.p_id
+group by t.id; 
+
+--solution #2: 
+select id, 
+case 
+    when p_id is null then 'Root'
+    when id in (select p_id from Tree) then 'Inner'
+    else 'Leaf'
+End as type
+from Tree; 
